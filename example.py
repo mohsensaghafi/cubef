@@ -4,6 +4,10 @@ from cube import *
 
 def main():
     print("Start...")
+    # c3 = cube("ggygggggywwwwwwwwwoogoooooooyryyyyyygrrrrrrrrbbbbbbbbb")
+    # c3_solved = move(c3, "F2 U F Ui Fi Fi U F Ui Fi U F Ui Fi U F Ui Fi U F Ui Fi F2 U F Ui Fi Fi U F Ui Fi")
+    # print(STR(c3_solved))
+    # return 0
     lc_2nd_layer_target = "xxxxxxxxxxxxwwwwwwxxxooooooxxxyyyyyyxxxrrrrrrbbbbbbbbb"
     lc_2nd_layer__left_p_target = "xxxxxxxxxxxxwwwwwwxxxooxoooxxxxyyyyyxxxrrrrrrbbbbbbbbb"
     lc_2nd_layer__right_p_target = "xxxxxxxxxxxxwwwwwwxxxooooooxxxyyyyyyxxxrrrrrrbbbbbbbbb"
@@ -20,7 +24,8 @@ def main():
     # show(c2)
     # ccc = move(c2, "U2 F fi Ui f Fi U2 F fi Ui f Fi")
     # show(ccc)
-    c3 = cube("wgrgggggy rwwwwwwwwoogoooooooygyyyyyyyrgrrrrrrbbbbbbbbb")
+    c3 = cube("wgrgggggyrwwwwwwwwoogoooooooygyyyyyyyrgrrrrrrbbbbbbbbb")
+    c3 = cube("ggygggggywwwwwwwwwoogoooooooyryyyyyygrrrrrrrrbbbbbbbbb")
     r = solve(c3, solved_pattern, limited_cube_special_moves_extended())
     print(r)
     # c_1st_cross = move(c, "U F U fi U f U2 fi Ui f Fi")

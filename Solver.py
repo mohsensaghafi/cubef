@@ -1,4 +1,3 @@
-# TODO: implement the solver to solve the cube using A* method.
 from functools import partial
 
 from cube import *

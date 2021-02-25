@@ -1,5 +1,14 @@
 import itertools
 
+COLOR_CODE = {
+    'w': 0,
+    'r': 1,
+    'b': 2,
+    'o': 3,
+    'g': 4,
+    'y': 5,
+}
+
 
 def cube(init_value=None):
     """
@@ -569,3 +578,28 @@ def get_move(move):
 
 def STR(cube):
     return "".join(cube)
+
+
+def charMap(num):
+    return chr(num + 33)
+
+
+def shortten(num):
+    n = num
+    l = []
+    for _ in range(4):
+        l.append(charMap(n % 90))
+        n //= 90
+    return STR(l)
+
+
+def shortVersion(cube):
+    base_10 = 0
+    result = []
+    for index, c in enumerate(cube):
+        base_10 *= 6
+        base_10 += COLOR_CODE[c]
+        if index % 9 == 8:
+            result.append(shortten(base_10))
+            base_10 = 0
+    return STR(result)
