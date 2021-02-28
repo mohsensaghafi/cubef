@@ -1,4 +1,7 @@
+import functools
 import itertools
+
+from functional_helper import comp
 
 COLOR_CODE = {
     'w': 0,
@@ -14,7 +17,7 @@ def cube(init_value=None):
     """
     model a cube as each element of U L F R B D
     """
-    if init_value == None:
+    if init_value is None:
         return [i for i in itertools.chain(
             itertools.repeat('w', 9),
             itertools.repeat('r', 9),
@@ -44,8 +47,8 @@ def show(cube, title=''):
         [{51}][{52}][{53}]""".format(*cube, title))
 
 
-def U(cube):
-    return [cube[i] for i in [
+def U(c):
+    return [c[i] for i in [
         6, 3, 0,
         7, 4, 1,
         8, 5, 2,
@@ -71,8 +74,8 @@ def U(cube):
         51, 52, 53]]
 
 
-def Ui(cube):
-    return [cube[i] for i in [
+def Ui(c):
+    return [c[i] for i in [
         2, 5, 8,
         1, 4, 7,
         0, 3, 6,
@@ -98,8 +101,8 @@ def Ui(cube):
         51, 52, 53]]
 
 
-def R(cube):
-    return [cube[i] for i in [
+def R(c):
+    return [c[i] for i in [
         0, 1, 20,
         3, 4, 23,
         6, 7, 26,
@@ -125,8 +128,8 @@ def R(cube):
         51, 52, 36]]
 
 
-def Ri(cube):
-    return [cube[i] for i in [
+def Ri(c):
+    return [c[i] for i in [
         0, 1, 42,
         3, 4, 39,
         6, 7, 36,
@@ -152,8 +155,8 @@ def Ri(cube):
         51, 52, 26]]
 
 
-def L(cube):
-    return [cube[i] for i in [
+def L(c):
+    return [c[i] for i in [
         44, 1, 2,
         41, 4, 5,
         38, 7, 8,
@@ -179,8 +182,8 @@ def L(cube):
         24, 52, 53]]
 
 
-def Li(cube):
-    return [cube[i] for i in [
+def Li(c):
+    return [c[i] for i in [
         18, 1, 2,
         21, 4, 5,
         24, 7, 8,
@@ -206,8 +209,8 @@ def Li(cube):
         38, 52, 53]]
 
 
-def F(cube):
-    return [cube[i] for i in [
+def F(c):
+    return [c[i] for i in [
         0, 1, 2,
         3, 4, 5,
         17, 14, 11,
@@ -233,8 +236,8 @@ def F(cube):
         51, 52, 53]]
 
 
-def Fi(cube):
-    return [cube[i] for i in [
+def Fi(c):
+    return [c[i] for i in [
         0, 1, 2,
         3, 4, 5,
         27, 30, 33,
@@ -260,8 +263,8 @@ def Fi(cube):
         51, 52, 53]]
 
 
-def B(cube):
-    return [cube[i] for i in [
+def B(c):
+    return [c[i] for i in [
         29, 32, 35,
         3, 4, 5,
         6, 7, 8,
@@ -287,8 +290,8 @@ def B(cube):
         9, 12, 15]]
 
 
-def Bi(cube):
-    return [cube[i] for i in [
+def Bi(c):
+    return [c[i] for i in [
         15, 12, 9,
         3, 4, 5,
         6, 7, 8,
@@ -314,8 +317,8 @@ def Bi(cube):
         35, 32, 29]]
 
 
-def D(cube):
-    return [cube[i] for i in [
+def D(c):
+    return [c[i] for i in [
         0, 1, 2,
         3, 4, 5,
         6, 7, 8,
@@ -341,8 +344,8 @@ def D(cube):
         53, 50, 47]]
 
 
-def Di(cube):
-    return [cube[i] for i in [
+def Di(c):
+    return [c[i] for i in [
         0, 1, 2,
         3, 4, 5,
         6, 7, 8,
@@ -368,38 +371,38 @@ def Di(cube):
         45, 48, 51]]
 
 
-def u(cube):
+def u(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def ui(cube):
+def ui(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def r(cube):
+def r(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def ri(cube):
+def ri(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def l(cube):
+def l(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def li(cube):
+def li(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def f(cube):
-    return [cube[i] for i in [
+def f(c):
+    return [c[i] for i in [
         0, 1, 2,
         16, 13, 10,
         17, 14, 11,
@@ -425,8 +428,8 @@ def f(cube):
         51, 52, 53]]
 
 
-def fi(cube):
-    return [cube[i] for i in [
+def fi(c):
+    return [c[i] for i in [
         0, 1, 2,
         28, 31, 34,
         27, 30, 33,
@@ -452,105 +455,107 @@ def fi(cube):
         51, 52, 53]]
 
 
-def b(cube):
+def b(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def bi(cube):
+def bi(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def d(cube):
+def d(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def di(cube):
+def di(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def X(cube):
+def X(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def Xi(cube):
+def Xi(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def Y(cube):
+def Y(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def Yi(cube):
+def Yi(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def Z(cube):
+def Z(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def Zi(cube):
+def Zi(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def M(cube):
+def M(c):
     # TODO: need to be implemented. Middle Layer
     raise NotImplemented
 
 
-def Mi(cube):
+def Mi(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def E(cube):
+def E(c):
     # TODO: need to be implemented. Equator Layer
     raise NotImplemented
 
 
-def Ei(cube):
+def Ei(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def S(cube):
+def S(c):
     # TODO: need to be implemented. Standing Layer (Layer between Front and Back)
     raise NotImplemented
 
 
-def Si(cube):
+def Si(c):
     # TODO: need to be implemented.
     raise NotImplemented
 
 
-def U2(cube):
-    return U(U(cube))
+def U2(c):
+    return U(U(c))
 
 
-def F2(cube):
-    return F(F(cube))
+def F2(c):
+    return F(F(c))
 
 
-def f2(cube):
-    return f(f(cube))
+def f2(c):
+    return f(f(c))
 
 
-def move(cube, moves):
-    c = cube[:]
+def apply_moves(c, moves):
     if isinstance(moves, str):
-        moves = list(map(get_move, moves.split(" ")))
-    for move in moves:
-        c = move(c)
-    return c
+        return apply_moves_f(c, list(map(get_move, moves.split(" "))))
+    else:
+        return apply_moves_f(c, moves)
+
+
+def apply_moves_f(c, moves_list):
+    return comp(moves_list)(cube(c))
 
 
 def get_move(move):
@@ -576,30 +581,51 @@ def get_move(move):
     return d.get(move, None)
 
 
-def STR(cube):
-    return "".join(cube)
+def to_string(lst):
+    return "".join(lst)
 
 
-def charMap(num):
-    return chr(num + 33)
+def split_sides(c):
+    return [c[i:i + 9] for i in range(0, 54, 9)]
 
 
-def shortten(num):
-    n = num
-    l = []
-    for _ in range(4):
-        l.append(charMap(n % 90))
-        n //= 90
-    return STR(l)
+def to_base_6(side):
+    return functools.reduce(lambda total, piece_color: total * 6 + COLOR_CODE[piece_color]
+                            , side
+                            , 0)
 
 
-def shortVersion(cube):
-    base_10 = 0
+def to_base_b_rev(n, base=16):
+    # for the sake of performance ignore the recursion due to not having tail-optimization in python
     result = []
-    for index, c in enumerate(cube):
-        base_10 *= 6
-        base_10 += COLOR_CODE[c]
-        if index % 9 == 8:
-            result.append(shortten(base_10))
-            base_10 = 0
-    return STR(result)
+    while n > 0:
+        result.append(n % base)
+        n //= base
+    return result
+
+
+# in our representation its only important they become unique,
+# having everything reversed is not going to make any difference.
+to_base_90 = functools.partial(to_base_b_rev, base=90)
+
+
+def to_special_str_repr(lst):
+    """
+    this function receive a list which each item is a digit in our base (let say 90)
+    and offset them with 33 to avoid not readable characters.
+    then we use the ascii code from 33 to 127 to cast them into a readable char.
+    then concat them together to form a string
+    """
+    return to_string([chr(i + 33) for i in lst])
+
+
+side_to_special_repr_base_90 = comp([
+    to_base_6,
+    to_base_90,
+    lambda lst: lst[:4],  # with our size, only 4 digit will cover the whole representations.
+    to_special_str_repr
+])
+
+
+def compress(c):
+    return to_string([side_to_special_repr_base_90(side) for side in split_sides(c)])

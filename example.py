@@ -4,6 +4,19 @@ from cube import *
 
 def main():
     print("Start...")
+    # c = cube()
+    # print(side_to_special_repr_base_90)
+    # print(side_to_special_repr_base_90('rrrrrrrrr'))
+    # print(compress(cube()))
+    # return 0
+    # show(move("wwwwwwwwwrrrrrrrrrbbbbbbbbbooooooooogggggggggyyyyyyyyy", [U, U, U, F, F, F, L, R]))
+    # return 0
+    # c = cube()
+    # show(c)
+    # show(move(c, [U]), "U")
+    # show(move(c, [U, R]), "UR")
+    # show(move(c, [U, R, F]), "URF")
+    # return 0
     # c3 = cube("ggygggggywwwwwwwwwoogoooooooyryyyyyygrrrrrrrrbbbbbbbbb")
     # c3_solved = move(c3, "F2 U F Ui Fi Fi U F Ui Fi U F Ui Fi U F Ui Fi U F Ui Fi F2 U F Ui Fi Fi U F Ui Fi")
     # print(STR(c3_solved))
@@ -65,7 +78,7 @@ def main():
     c = cube()
     # c1 = move(c, [Ri, Di, R, D])
     # c1 = move(c, "Ri Di R D")
-    c1 = move(c, [Ri, Di, R, D])
+    c1 = apply_moves(c, [Ri, Di, R, D])
     print(c1)
     show(c1)
     # show(U(c), 'U')
