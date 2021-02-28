@@ -3,6 +3,8 @@ import sys
 import time
 from datetime import datetime
 
+from cube import compress
+
 
 def A_star(start_state, successor_f, h_f, is_goal_f):
     explored = set()
@@ -29,10 +31,10 @@ def A_star(start_state, successor_f, h_f, is_goal_f):
         t_start = time.time()
         for (action, state) in successor_f(s):
             t_start_IN = time.time()
-            if state not in explored:
+            if compress(state) not in explored:
                 t_end_IN = time.time()
                 IN_time += (t_end_IN - t_start_IN)
-                explored.add(state)
+                explored.add(compress(state))
                 path2 = path[:]
                 path2.append((action, state))
                 h2 = h_f(state)
