@@ -1,7 +1,7 @@
 from functools import partial
 
 from cube import *
-from util import A_star_heap
+from util import A_star
 
 
 def state_check(cube, pattern):
@@ -13,10 +13,10 @@ def possible_moves():
 
 
 def successor_moves(s, fs):
-    return [(f.__name__, STR(f(s))) for f in fs]
+    return [(f.__name__, to_string(f(s))) for f in fs]
 
 
-def solve(cube, target_pattern, possible_moves):
+def solve(c, target_pattern, moves):
     """
     solver for cube:
     - set the presentation as string
@@ -24,10 +24,10 @@ def solve(cube, target_pattern, possible_moves):
     - call A* method
     - collect the result and return
     """
-    c1 = STR(cube)
+    c1 = to_string(c)
 
     state_check_target = partial(state_check, pattern=target_pattern)
-    cube_successor = partial(successor_moves, fs=possible_moves)
+    cube_successor = partial(successor_moves, fs=moves)
 
     def is_target_achived(s):
         return all(state_check_target(s))
@@ -35,7 +35,7 @@ def solve(cube, target_pattern, possible_moves):
     def calc_score(s):
         return state_check_target(s).count(False)
 
-    result = A_star_heap(
+    result = A_star(
         c1,
         cube_successor,
         calc_score,
@@ -69,9 +69,9 @@ def limited_cube_special_moves_extended():
     return [U, Ui, F, Fi, UiFiUF, UFUiFi, f, fi, U2, F2, f2]
 
 
-def UiFiUF(cube):
-    return F(U(Fi(Ui(cube))))
+def UiFiUF(c):
+    return F(U(Fi(Ui(c))))
 
 
-def UFUiFi(cube):
-    return Fi(Ui(F(U(cube))))
+def UFUiFi(c):
+    return Fi(Ui(F(U(c))))
