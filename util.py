@@ -3,10 +3,10 @@ import sys
 import time
 from datetime import datetime
 
-from cube import compress
+from functional_helper import identity
 
 
-def A_star(start_state, successor_f, h_f, is_goal_f):
+def A_star(start_state, successor_f, h_f, is_goal_f, compress=identity):
     explored = set()
     g = 1
     h = h_f(start_state)
@@ -47,14 +47,14 @@ def A_star(start_state, successor_f, h_f, is_goal_f):
             print(datetime.now().strftime("%Y-%m-%d %H:%M")
                   , "frontiers size:", len(frontiers)
                   , "frontiers info", frontiers[-1][:3]
-                  , "top side:", frontiers[-1][3][-1][1][4]
+                  # , "top side:", frontiers[-1][3][-1][1][4]
                   , "Push(S)", push_operation_duration
                   , "Pop(S)", pop_operation_duration
                   , "Search(S)", in_operation_duration
-                  , " Process(S)", process_time
+                  , "Process(S)", process_time
                   , "frontiers(GB)", round(sys.getsizeof(frontiers) / 1073741824, 2)
                   , "explored(GB)", round(sys.getsizeof(explored) / 1073741824, 2)
-            )
+                  )
             it = 0
 
     return []

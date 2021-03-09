@@ -4,16 +4,21 @@ from cube import *
 from util import A_star
 
 
-def state_check(cube, pattern):
-    return [(p == 'x' or c == p) for (c, p) in zip(cube, pattern)]
+def state_check(c, pattern):
+    return [(p == 'x' or c == p) for (c, p) in zip(c, pattern)]
 
 
 def possible_moves():
+    """
+    This is the list of all moves that can apply on a cube
+    Note: This is not the full list, some moves are not implemented yet.
+    Todo: Update this list after complete implementation of the moves.
+    """
     return [U, Ui, F, Fi, L, Li, R, Ri, D, Di, B, Bi]
 
 
-def successor_moves(s, fs):
-    return [(f.__name__, to_string(f(s))) for f in fs]
+def successor_moves(s, function_list):
+    return [(func.__name__, to_string(func(s))) for func in function_list]
 
 
 def solve(c, target_pattern, moves):
@@ -29,7 +34,7 @@ def solve(c, target_pattern, moves):
     state_check_target = partial(state_check, pattern=target_pattern)
     cube_successor = partial(successor_moves, fs=moves)
 
-    def is_target_achived(s):
+    def is_target_achieved(s):
         return all(state_check_target(s))
 
     def calc_score(s):
@@ -39,39 +44,19 @@ def solve(c, target_pattern, moves):
         c1,
         cube_successor,
         calc_score,
-        is_target_achived
+        is_target_achieved,
+        compress
     )
     print("result", result)
-    if result and is_target_achived(result[-1][1]):
+    if result and is_target_achieved(result[-1][1]):
         return [item[0] for item in result][1:]
     else:
         raise TimeoutError("Couldn't find any solution")
 
-
-def limited_cube_moves():
-    """
-    Moves for the limited cube
-    """
-    return [U, Ui, F, Fi, f, fi, U2, F2, f2]
-
-
-def limited_cube_special_moves():
-    """
-    Moves for the limited cube
-    """
-    return [U, Ui, F, Fi, UiFiUF, UFUiFi]
-
-
-def limited_cube_special_moves_extended():
-    """
-    Moves for the limited cube
-    """
-    return [U, Ui, F, Fi, UiFiUF, UFUiFi, f, fi, U2, F2, f2]
-
-
-def UiFiUF(c):
-    return F(U(Fi(Ui(c))))
-
-
-def UFUiFi(c):
-    return Fi(Ui(F(U(c))))
+# TODO: implement some helper functions for solving steps for each cube
+# Some of the candidate functions are:
+# - first_layer_cross
+# - first_layer_corners
+# - second_layer_corners
+# - third_layer_cross
+# - ...
