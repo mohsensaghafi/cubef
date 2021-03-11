@@ -37,8 +37,8 @@ def main():
     lc_top_cross = "xgxgggxgxxxxwwwwwwxxxooooooxxxyyyyyyxxxrrrrrrbbbbbbbbb"
     """
     solved_pattern = "gggggggggwwwwwwwwwoooooooooyyyyyyyyyrrrrrrrrrbbbbbbbbb"
-
-    result = solve(c, solved_pattern, modified_cube_moves_special_extended())
+    cc = cube("ogwgggygggwrwwwwwwgoroooooowyoyyyyyygryrrrrrrbbbbbbbbb")
+    result = solve(cc, solved_pattern, modified_cube_moves_special_extended())
     print(result)
 
     # apply list of moves on a cube
