@@ -32,7 +32,7 @@ def solve(c, target_pattern, moves):
     c1 = to_string(c)
 
     state_check_target = partial(state_check, pattern=target_pattern)
-    cube_successor = partial(successor_moves, fs=moves)
+    cube_successor = partial(successor_moves, function_list=moves)
 
     def is_target_achieved(s):
         return all(state_check_target(s))
