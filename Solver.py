@@ -14,11 +14,11 @@ def possible_moves():
     Note: This is not the full list, some moves are not implemented yet.
     Todo: Update this list after complete implementation of the moves.
     """
-    return [U, Ui, F, Fi, L, Li, R, Ri, D, Di, B, Bi]
+    return {U, Ui, F, Fi, L, Li, R, Ri, D, Di, B, Bi}
 
 
 def successor_moves(s, function_list):
-    return [(func.__name__, to_string(func(s))) for func in function_list]
+    return {(func.__name__, to_string(func(s))) for func in function_list}
 
 
 def solve(c, target_pattern, moves):
